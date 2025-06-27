@@ -926,7 +926,7 @@ class KeycloakAPI(object):
         :param realm: Realm in which the user resides; default 'master'
         """
         users_url = URL_USERS.format(url=self.baseurl, realm=realm)
-        users_url += '?username=%s&exact=true' % username
+        users_url += '?' + urlencode({'username': username, 'exact': 'true'})
         try:
             userrep = None
             users = self._request_and_deserialize(users_url, method='GET')
